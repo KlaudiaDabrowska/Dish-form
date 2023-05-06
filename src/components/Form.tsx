@@ -160,7 +160,9 @@ export const Form = () => {
               variant="outlined"
               onChange={formik.handleChange}
               value={formik.values.dishName}
-              sx={{ mb: formik.errors.dishName ? 0 : 3 }}
+              sx={{
+                mb: formik.errors.dishName && formik.touched.dishName ? 0 : 3,
+              }}
             />
 
             {formik.touched.dishName && formik.errors.dishName && (
@@ -185,7 +187,13 @@ export const Form = () => {
                   },
                 },
               }}
-              sx={{ mb: formik.errors.preparationTime ? 0 : 3 }}
+              sx={{
+                mb:
+                  formik.errors.preparationTime &&
+                  formik.touched.preparationTime
+                    ? 0
+                    : 3,
+              }}
             />
 
             {formik.touched.preparationTime &&
@@ -225,7 +233,13 @@ export const Form = () => {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.noOfPizzaSlices ?? ""}
-                  sx={{ mb: formik.errors.noOfPizzaSlices ? 0 : 3 }}
+                  sx={{
+                    mb:
+                      formik.errors.noOfPizzaSlices &&
+                      formik.touched.noOfPizzaSlices
+                        ? 0
+                        : 3,
+                  }}
                   onKeyDown={(e: React.KeyboardEvent<HTMLElement>) =>
                     [",", "."].includes(e.key) && e.preventDefault()
                   }
@@ -248,7 +262,13 @@ export const Form = () => {
                       min: 0,
                     },
                   }}
-                  sx={{ mb: formik.errors.pizzaDiameter ? 0 : 3 }}
+                  sx={{
+                    mb:
+                      formik.errors.pizzaDiameter &&
+                      formik.touched.pizzaDiameter
+                        ? 0
+                        : 3,
+                  }}
                 />
                 {formik.touched.pizzaDiameter &&
                   formik.errors.pizzaDiameter && (
@@ -273,7 +293,13 @@ export const Form = () => {
                   max={10}
                   onChange={formik.handleChange}
                   value={formik.values.soupSpiciness ?? 0}
-                  sx={{ mb: formik.errors.soupSpiciness ? 0 : 3 }}
+                  sx={{
+                    mb:
+                      formik.errors.soupSpiciness &&
+                      formik.touched.soupSpiciness
+                        ? 0
+                        : 3,
+                  }}
                 >
                   {formik.touched.soupSpiciness &&
                     formik.errors.soupSpiciness && (
@@ -296,7 +322,12 @@ export const Form = () => {
                   type="number"
                   onChange={formik.handleChange}
                   value={formik.values.noOfBread ?? ""}
-                  sx={{ mb: formik.errors.noOfBread ? 0 : 3 }}
+                  sx={{
+                    mb:
+                      formik.errors.noOfBread && formik.touched.noOfBread
+                        ? 0
+                        : 3,
+                  }}
                 />
                 {formik.touched.noOfBread && formik.errors.noOfBread && (
                   <Typography sx={{ textAlign: "left", mb: 2 }} color="error">
