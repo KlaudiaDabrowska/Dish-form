@@ -1,4 +1,5 @@
 import axios from "axios";
+import { apiClient } from "../config/apiClient";
 
 interface newDish {
   name: string;
@@ -11,9 +12,6 @@ interface newDish {
 }
 
 export const addNewDish = async (newDish: newDish) => {
-  const response = await axios.post(
-    "https://umzzcc503l.execute-api.us-west-2.amazonaws.com/dishes/",
-    newDish
-  );
+  const response = await apiClient.post("/dishes/", newDish);
   return response.data;
 };

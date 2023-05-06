@@ -22,7 +22,7 @@ To clone and run this application, you'll need **Git and Node.js** installed on 
 # Clone this repository
 $ git clone https://github.com/KlaudiaDabrowska/Dish-form
 
-# Go into the repository
+# CD into the directory
 $ cd Dish-form
 
 # Install dependencies

@@ -10,10 +10,11 @@ import { useFormik } from "formik";
 import { useMutation } from "react-query";
 import { toast, ToastContainer } from "react-toastify";
 import * as Yup from "yup";
-import { addNewDish } from "../helpers/addNewDish";
 import "react-toastify/dist/ReactToastify.css";
 import { AxiosError } from "axios";
 import InputMask from "react-input-mask";
+import { range } from "../helpers/range";
+import { addNewDish } from "../api/dishApi";
 
 enum DishType {
   Pizza = "pizza",
@@ -32,9 +33,7 @@ enum ApiErrors {
 }
 
 export const Form = () => {
-  const spicinessValues = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-  const spicinessMarks = spicinessValues.map((value) => {
+  const spicinessMarks = range(1, 10).map((value) => {
     return { value: value, label: value.toString() };
   });
 
@@ -54,7 +53,7 @@ export const Form = () => {
         return;
       }
 
-      for (const [key, value] of Object.entries(e.response?.data)) {
+      Object.entries(e.response?.data)?.forEach(([key, value]) => {
         const convertedKey =
           Object.values(ApiErrors)[Object.keys(ApiErrors).indexOf(key)] ??
           "Unknown error occurred";
@@ -68,7 +67,7 @@ export const Form = () => {
           progress: undefined,
           theme: "light",
         });
-      }
+      });
     },
   });
 
@@ -136,7 +135,7 @@ export const Form = () => {
     },
   });
 
-  const handleSelectChange = (e: SelectChangeEvent) => {
+  const handleDishTypeChange = (e: SelectChangeEvent) => {
     const value = e.target.value;
     formik.setFieldValue("dishType", value);
   };
@@ -179,10 +178,10 @@ export const Form = () => {
                 //@ts-expect-error
                 inputComponent: InputMask,
                 inputProps: {
-                  mask: "XX:AX:AX",
+                  mask: "99:59:59",
                   formatChars: {
-                    A: "[0-5]",
-                    X: "[0-9]",
+                    5: "[0-5]",
+                    9: "[0-9]",
                   },
                 },
               }}
@@ -202,7 +201,7 @@ export const Form = () => {
                 labelId="dishTypeLabel"
                 id="dishType"
                 label="Dish type"
-                onChange={handleSelectChange}
+                onChange={handleDishTypeChange}
                 value={formik.values.dishType}
                 sx={{ mb: formik.errors.dishType ? 0 : 3 }}
               >
