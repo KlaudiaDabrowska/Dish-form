@@ -148,7 +148,7 @@ export const Form = () => {
         sx={{ fontWeight: "bold", mt: 2, mb: 3, textTransform: "uppercase" }}
         color="primary"
       >
-        Dishes Form
+        Dish Form
       </Typography>
       {isSuccess ? (
         <Typography sx={{ my: 25 }}>Thanks for add a new dish!</Typography>
